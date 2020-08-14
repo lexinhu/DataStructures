@@ -1,5 +1,7 @@
 package com.xn2001.linkedlist;
 
+import java.util.Stack;
+
 /**
  * @author 乐心湖
  * @date 2020/8/13 23:52
@@ -33,14 +35,22 @@ public class SingleLinkedListDemo {
 //        singleLinkedList.del(4);
 //        System.out.println("删除后的链表情况~~");
 //        singleLinkedList.list();
-
+        System.out.println("链表的有效个数");
         System.out.println(getLength(singleLinkedList.getHead()));
-
-        reverseListTwo(singleLinkedList.getHead());
+        reverseListOne(singleLinkedList.getHead());
+//        reverseListTwo(singleLinkedList.getHead());
+        System.out.println("反转后的链表");
         singleLinkedList.list();
+        System.out.println("倒数第二个---");
+        System.out.println(findLastIndexNode(singleLinkedList.getHead(), 2));
+        System.out.println("从尾到头打印单链表");
+        reversePrint(singleLinkedList.getHead());
+
     }
 
     /**
+     * 求单链表中有效节点个数
+     *
      * @param head 单链表的头节点
      * @return 返回有效节点的个数
      */
@@ -54,6 +64,12 @@ public class SingleLinkedListDemo {
         return length;
     }
 
+    /**
+     * 单链表的反转
+     * 就地反转法
+     *
+     * @param head
+     */
     public static void reverseListOne(HeroNode head) {
         // 声明当前节点，前继节点和后继节点
         HeroNode prev = head.next;
@@ -70,6 +86,12 @@ public class SingleLinkedListDemo {
         }
     }
 
+    /**
+     * 单链表的反转
+     * 头节点插入法
+     *
+     * @param head
+     */
     public static void reverseListTwo(HeroNode head) {
         //如果当前链表为空，或者只有一个节点，无需反转，直接返回
         if (head.next == null || head.next.next == null) {
@@ -87,8 +109,44 @@ public class SingleLinkedListDemo {
             cur = next; //让 cur 后移
         }
         //将 head.next 指向 reverseHead.next , 实现单链表的反转
-         head.next = reverseHead.next;
+        head.next = reverseHead.next;
     }
+
+    /**
+     * 查找单链表中的倒数第 k 个结点
+     *
+     * @param head
+     * @param index 倒数第 index 个节点
+     * @return
+     */
+    public static HeroNode findLastIndexNode(HeroNode head, int index) {
+        int length = getLength(head);
+        if (index > length || length <= 0) {
+            return null;
+        }
+        HeroNode temp = head.next;
+        for (int i = 0; i < length - index; i++) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    //从尾到头打印单链表
+    public static void reversePrint(HeroNode head) {
+        if (head.next == null) {
+            return;
+        }
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
+    }
+
 }
 
 class SingleLinkedList {

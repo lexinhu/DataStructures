@@ -90,7 +90,7 @@ public class PolandNotation {
         return ls;
     }
 
-    //将一个逆波兰表达式， 依次将数据和运算符 放入到 ArrayList 中
+    //将一个逆波兰表达式，依次将数据和运算符 放入到 ArrayList 中
     public static List<String> getListString(String suffixExpression) {
         //根据空格来切割
         String[] split = suffixExpression.split("\\s+");

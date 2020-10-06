@@ -21,7 +21,6 @@ public class MiGong {
         map[3][2] = 1;
         map[4][3] = 1;
         map[3][4] = 1;
-
         System.out.println("地图的情况");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -29,9 +28,7 @@ public class MiGong {
             }
             System.out.println();
         }
-
         setWay(map,1,1);
-
         System.out.println("小球走过，并标识过的地图情况");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -39,7 +36,6 @@ public class MiGong {
             }
             System.out.println();
         }
-
     }
 
     // 使用递归回溯来给小球找路
